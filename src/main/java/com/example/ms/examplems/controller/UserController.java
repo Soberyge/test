@@ -25,7 +25,6 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    //UserService userService;
 
     @GetMapping
     public String getUsers(
