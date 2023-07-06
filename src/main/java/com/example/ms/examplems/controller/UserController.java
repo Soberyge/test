@@ -25,6 +25,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    //UserService userService;
+
     @GetMapping
     public String getUsers(
             @RequestParam(value = "page", defaultValue = "1") int page,
