@@ -4,31 +4,47 @@ import com.example.ms.examplems.model.request.UserDetailsRequestModel;
 import com.example.ms.examplems.model.response.UserRest;
 import com.example.ms.examplems.shared.Utils;
 import com.example.ms.examplems.userService.UserService;
-import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Service
 public class UserServiceImp implements UserService {
 
-    Map<String, UserRest> users;
-    Utils utils;
+    /**
+     * map users.
+     */
+    private Map<String, UserRest> users;
+    /**
+     * utils.
+     */
+    private Utils utils;
 
-    public UserServiceImp(){
-
+    /**
+     * constructor.
+     */
+    public UserServiceImp() {
     }
 
+    /**
+     *
+     * @param utils
+     */
     @Autowired
-    public UserServiceImp(Utils utils) {
+    public UserServiceImp(final Utils utils) {
         this.utils = utils;
     }
 
+    /**
+     *
+     * @param userDetailsRequestModel
+     * @return
+     */
     @Override
-    public UserRest createUser(UserDetailsRequestModel userDetailsRequestModel) {
+    public UserRest createUser(
+            final UserDetailsRequestModel userDetailsRequestModel) {
 
         UserRest user = new UserRest();
         user.setFirstName(userDetailsRequestModel.getFirstName());
@@ -38,7 +54,9 @@ public class UserServiceImp implements UserService {
         String userId = utils.generateUserId();
         user.setUserId(userId);
 
-        if(users == null) users = new HashMap<>();
+        if (users == null) {
+            users = new HashMap<>();
+        }
         users.put(userId, user);
 
         return user;
